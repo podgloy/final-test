@@ -16,14 +16,20 @@ export default function Home() {
     const gender = event.target.gender.value;
     const appearance = event.target.appearance.value;
 
-    const response = await axios.post("/api/create-img", {
-      gender,
-      appearance
-    })
+    try{
+      const response = await axios.post("/api/create-img", {
+        gender,
+        appearance
+      })
+      console.log(response.data)
+      setAnswer(response.data.answer)
+      setIsLoading(false);
+    }catch(error){
+      console.log(error)
+    }
 
-    console.log(response.data)
-    setAnswer(response.data.answer)
-    setIsLoading(false);
+
+
   }
 
   return (
